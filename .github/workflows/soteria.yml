@@ -13,7 +13,11 @@ jobs:
       - name: Check-out the repository
         uses: actions/checkout@v2
       - name: Soteria Pro Audit
-        continue-on-error: false    # set to true if you don't want to fail jobs
+        continue-on-error: true    # set to true if you don't want to fail jobs
         uses: soteria-bc/pro-action-pilot@v1
         with:
           soteria-token: ${{ secrets.SOTERIA_TOKEN }}
+      - name: Upload Sarif Report
+        uses: github/codeql-action/upload-sarif@v1
+        with:
+          sarif_file: soteria-report.sarif
